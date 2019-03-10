@@ -1,0 +1,22 @@
+.modal-min-max{
+    padding-top:30px;
+    padding-button:30px;
+    width: 300px;
+    height: 450px;
+}
+.slider-min-max{
+    margin-left:40px;
+    margin-right:30px;
+    margin-top:10px;
+    width: 250px;
+    height:600px;
+    margin-bottom:60px
+}
+.button-use{
+    margin-top:50px;
+    margin-bottom: 10px;
+}
+.modal-custom-container{
+    height: 1000px;
+
+}

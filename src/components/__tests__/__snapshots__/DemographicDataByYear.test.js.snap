@@ -1,0 +1,914 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DemographicData with store renders correctly using store 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DemographicDataByYear
+    match={
+      Object {
+        "params": Object {
+          "mode": "empleo",
+          "year": "2016",
+        },
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <AuthGuardRedirect />,
+        <br />,
+        <h4>
+          Datos de empleo por provincias 
+        </h4>,
+        <br />,
+        <br />,
+        <div
+          className="loading"
+        >
+          Cargando mapa 
+          <LoadingDots />
+        </div>,
+        undefined,
+        <div>
+          <div
+            className="form-group row"
+          >
+            <label
+              className="col-1 col-form-label label-introduzca-mun"
+              htmlFor="sel1"
+            >
+              año:
+            </label>
+            <div
+              className="col-3"
+            >
+              <select
+                className="form-control option"
+                id="sel1"
+                onChange={[Function]}
+                value="2016"
+              >
+                <option
+                  value="2011"
+                >
+                  2011
+                </option>
+                <option
+                  value="2015"
+                >
+                  2015
+                </option>
+                <option
+                  value="2016"
+                >
+                  2016
+                </option>
+              </select>
+            </div>
+          </div>
+          <Connect(PreferencesMapMenu)
+            colorMax="rgb(0, 153, 0)"
+            colorMin="rgb(254, 251, 233)"
+            updateColor={[Function]}
+          />
+          <br />
+          <div>
+            <CusecMap
+              centerMap={true}
+              colorMax="rgb(0, 153, 0)"
+              colorMin="rgb(254, 251, 233)"
+              geoJson={null}
+            />
+          </div>
+        </div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Datos de empleo por provincias ",
+        },
+        "ref": null,
+        "rendered": "Datos de empleo por provincias ",
+        "type": "h4",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Cargando mapa ",
+            <LoadingDots />,
+          ],
+          "className": "loading",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Cargando mapa ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      undefined,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="form-group row"
+            >
+              <label
+                className="col-1 col-form-label label-introduzca-mun"
+                htmlFor="sel1"
+              >
+                año:
+              </label>
+              <div
+                className="col-3"
+              >
+                <select
+                  className="form-control option"
+                  id="sel1"
+                  onChange={[Function]}
+                  value="2016"
+                >
+                  <option
+                    value="2011"
+                  >
+                    2011
+                  </option>
+                  <option
+                    value="2015"
+                  >
+                    2015
+                  </option>
+                  <option
+                    value="2016"
+                  >
+                    2016
+                  </option>
+                </select>
+              </div>
+            </div>,
+            undefined,
+            <Connect(PreferencesMapMenu)
+              colorMax="rgb(0, 153, 0)"
+              colorMin="rgb(254, 251, 233)"
+              updateColor={[Function]}
+            />,
+            <br />,
+            <div>
+              <CusecMap
+                centerMap={true}
+                colorMax="rgb(0, 153, 0)"
+                colorMin="rgb(254, 251, 233)"
+                geoJson={null}
+              />
+            </div>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label
+                  className="col-1 col-form-label label-introduzca-mun"
+                  htmlFor="sel1"
+                >
+                  año:
+                </label>,
+                <div
+                  className="col-3"
+                >
+                  <select
+                    className="form-control option"
+                    id="sel1"
+                    onChange={[Function]}
+                    value="2016"
+                  >
+                    <option
+                      value="2011"
+                    >
+                      2011
+                    </option>
+                    <option
+                      value="2015"
+                    >
+                      2015
+                    </option>
+                    <option
+                      value="2016"
+                    >
+                      2016
+                    </option>
+                  </select>
+                </div>,
+              ],
+              "className": "form-group row",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "año:",
+                  "className": "col-1 col-form-label label-introduzca-mun",
+                  "htmlFor": "sel1",
+                },
+                "ref": null,
+                "rendered": "año:",
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <select
+                    className="form-control option"
+                    id="sel1"
+                    onChange={[Function]}
+                    value="2016"
+                  >
+                    <option
+                      value="2011"
+                    >
+                      2011
+                    </option>
+                    <option
+                      value="2015"
+                    >
+                      2015
+                    </option>
+                    <option
+                      value="2016"
+                    >
+                      2016
+                    </option>
+                  </select>,
+                  "className": "col-3",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <option
+                        value="2011"
+                      >
+                        2011
+                      </option>,
+                      <option
+                        value="2015"
+                      >
+                        2015
+                      </option>,
+                      <option
+                        value="2016"
+                      >
+                        2016
+                      </option>,
+                    ],
+                    "className": "form-control option",
+                    "id": "sel1",
+                    "onChange": [Function],
+                    "value": "2016",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "0",
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "2011",
+                        "value": "2011",
+                      },
+                      "ref": null,
+                      "rendered": "2011",
+                      "type": "option",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "1",
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "2015",
+                        "value": "2015",
+                      },
+                      "ref": null,
+                      "rendered": "2015",
+                      "type": "option",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "2",
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "2016",
+                        "value": "2016",
+                      },
+                      "ref": null,
+                      "rendered": "2016",
+                      "type": "option",
+                    },
+                  ],
+                  "type": "select",
+                },
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "colorMax": "rgb(0, 153, 0)",
+              "colorMin": "rgb(254, 251, 233)",
+              "updateColor": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": "br",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <CusecMap
+                centerMap={true}
+                colorMax="rgb(0, 153, 0)"
+                colorMin="rgb(254, 251, 233)"
+                geoJson={null}
+              />,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "centerMap": true,
+                "colorMax": "rgb(0, 153, 0)",
+                "colorMin": "rgb(254, 251, 233)",
+                "geoJson": null,
+                "intervalsValuesObject": undefined,
+                "propertyDisplayed": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <AuthGuardRedirect />,
+          <br />,
+          <h4>
+            Datos de empleo por provincias 
+          </h4>,
+          <br />,
+          <br />,
+          <div
+            className="loading"
+          >
+            Cargando mapa 
+            <LoadingDots />
+          </div>,
+          undefined,
+          <div>
+            <div
+              className="form-group row"
+            >
+              <label
+                className="col-1 col-form-label label-introduzca-mun"
+                htmlFor="sel1"
+              >
+                año:
+              </label>
+              <div
+                className="col-3"
+              >
+                <select
+                  className="form-control option"
+                  id="sel1"
+                  onChange={[Function]}
+                  value="2016"
+                >
+                  <option
+                    value="2011"
+                  >
+                    2011
+                  </option>
+                  <option
+                    value="2015"
+                  >
+                    2015
+                  </option>
+                  <option
+                    value="2016"
+                  >
+                    2016
+                  </option>
+                </select>
+              </div>
+            </div>
+            <Connect(PreferencesMapMenu)
+              colorMax="rgb(0, 153, 0)"
+              colorMin="rgb(254, 251, 233)"
+              updateColor={[Function]}
+            />
+            <br />
+            <div>
+              <CusecMap
+                centerMap={true}
+                colorMax="rgb(0, 153, 0)"
+                colorMin="rgb(254, 251, 233)"
+                geoJson={null}
+              />
+            </div>
+          </div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Datos de empleo por provincias ",
+          },
+          "ref": null,
+          "rendered": "Datos de empleo por provincias ",
+          "type": "h4",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Cargando mapa ",
+              <LoadingDots />,
+            ],
+            "className": "loading",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Cargando mapa ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        undefined,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="form-group row"
+              >
+                <label
+                  className="col-1 col-form-label label-introduzca-mun"
+                  htmlFor="sel1"
+                >
+                  año:
+                </label>
+                <div
+                  className="col-3"
+                >
+                  <select
+                    className="form-control option"
+                    id="sel1"
+                    onChange={[Function]}
+                    value="2016"
+                  >
+                    <option
+                      value="2011"
+                    >
+                      2011
+                    </option>
+                    <option
+                      value="2015"
+                    >
+                      2015
+                    </option>
+                    <option
+                      value="2016"
+                    >
+                      2016
+                    </option>
+                  </select>
+                </div>
+              </div>,
+              undefined,
+              <Connect(PreferencesMapMenu)
+                colorMax="rgb(0, 153, 0)"
+                colorMin="rgb(254, 251, 233)"
+                updateColor={[Function]}
+              />,
+              <br />,
+              <div>
+                <CusecMap
+                  centerMap={true}
+                  colorMax="rgb(0, 153, 0)"
+                  colorMin="rgb(254, 251, 233)"
+                  geoJson={null}
+                />
+              </div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <label
+                    className="col-1 col-form-label label-introduzca-mun"
+                    htmlFor="sel1"
+                  >
+                    año:
+                  </label>,
+                  <div
+                    className="col-3"
+                  >
+                    <select
+                      className="form-control option"
+                      id="sel1"
+                      onChange={[Function]}
+                      value="2016"
+                    >
+                      <option
+                        value="2011"
+                      >
+                        2011
+                      </option>
+                      <option
+                        value="2015"
+                      >
+                        2015
+                      </option>
+                      <option
+                        value="2016"
+                      >
+                        2016
+                      </option>
+                    </select>
+                  </div>,
+                ],
+                "className": "form-group row",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "año:",
+                    "className": "col-1 col-form-label label-introduzca-mun",
+                    "htmlFor": "sel1",
+                  },
+                  "ref": null,
+                  "rendered": "año:",
+                  "type": "label",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <select
+                      className="form-control option"
+                      id="sel1"
+                      onChange={[Function]}
+                      value="2016"
+                    >
+                      <option
+                        value="2011"
+                      >
+                        2011
+                      </option>
+                      <option
+                        value="2015"
+                      >
+                        2015
+                      </option>
+                      <option
+                        value="2016"
+                      >
+                        2016
+                      </option>
+                    </select>,
+                    "className": "col-3",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <option
+                          value="2011"
+                        >
+                          2011
+                        </option>,
+                        <option
+                          value="2015"
+                        >
+                          2015
+                        </option>,
+                        <option
+                          value="2016"
+                        >
+                          2016
+                        </option>,
+                      ],
+                      "className": "form-control option",
+                      "id": "sel1",
+                      "onChange": [Function],
+                      "value": "2016",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "0",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "2011",
+                          "value": "2011",
+                        },
+                        "ref": null,
+                        "rendered": "2011",
+                        "type": "option",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "1",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "2015",
+                          "value": "2015",
+                        },
+                        "ref": null,
+                        "rendered": "2015",
+                        "type": "option",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "2",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "2016",
+                          "value": "2016",
+                        },
+                        "ref": null,
+                        "rendered": "2016",
+                        "type": "option",
+                      },
+                    ],
+                    "type": "select",
+                  },
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "colorMax": "rgb(0, 153, 0)",
+                "colorMin": "rgb(254, 251, 233)",
+                "updateColor": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": "br",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <CusecMap
+                  centerMap={true}
+                  colorMax="rgb(0, 153, 0)"
+                  colorMin="rgb(254, 251, 233)"
+                  geoJson={null}
+                />,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "centerMap": true,
+                  "colorMax": "rgb(0, 153, 0)",
+                  "colorMin": "rgb(254, 251, 233)",
+                  "geoJson": null,
+                  "intervalsValuesObject": undefined,
+                  "propertyDisplayed": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

@@ -1,0 +1,23 @@
+.container-map {
+  border-radius: 10px;
+  border-style: solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-width:1px;
+}
+
+.legend{
+    padding-left: 40px;
+    min-height: 10px;
+}
+.edit-min-max{
+}
+
+.map-box{  
+  border-top: 0.5px;
+      border-style: solid;
+      border-left: 0px;
+      border-right:0px;
+      border-bottom: 0px;
+height: 500px;
+}

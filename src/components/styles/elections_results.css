@@ -1,0 +1,45 @@
+.title{
+      text-align: center;
+}
+
+.big-cell{
+    cursor: pointer;
+
+}
+
+.table-big{
+    overflow-y: hidden
+}
+
+.cell-hover:hover { 
+color:blue;
+ cursor: pointer;
+}
+
+.icon-active{
+    color:green;
+}
+
+.table-small{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+  .button-find{
+    min-width: 100px;
+  }
+
+  .label-introduzca-mun{
+    min-width: 100px;
+  }
+
+  .option{
+    min-width: 150px;
+  }
+
+.loading {
+    height: 100px;
+    max-width: 330px;
+    padding: 20px;
+    margin: 0 auto;
+}
