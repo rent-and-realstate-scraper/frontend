@@ -48,11 +48,8 @@ class AppNavbar extends React.Component {
                 <Link className="navbar-brand" to="/">Scraper</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon">
-                        <Link className="nav-link nav-link" to="/scraping_executions"> Scraping Executions</Link>
                     </span>
-                    <span className="navbar-toggler-icon">
-                        <Link className="nav-link nav-link" to="/scraping_summaries">  Scraping Summaries</Link>
-                    </span>
+
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -86,7 +83,10 @@ class AppNavbar extends React.Component {
 
     getSugestedLink = (role) => {
         if (role === undefined) {
-            return  <span></span>;
+            return (
+            <div>
+            <Link className="nav-link btn btn-dark" to="/scraping_executions"> Scraping Executions</Link>
+            </div>)
         } else {
             return <span></span>;
         }
