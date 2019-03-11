@@ -1,6 +1,6 @@
 
 const config = {
-    backendUrl: process.env["BACKEND_URL"] || 'http://localhost:3000',
+    backendUrl: process.env["BACKEND_URL"] || 'https://hbello.info',
 };
 /*
 const config = {
