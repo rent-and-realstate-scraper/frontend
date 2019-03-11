@@ -19,7 +19,11 @@ export class Home extends Component {
     }
 
     getSugestedLink = (role) => {
-
+        return(
+            <div>
+            <h5><Link className="nav-link nav-link" to="/scraping_executions"> Scraping Executions</Link></h5>
+            </div>
+        )
     }
 
     render() {
@@ -29,8 +33,10 @@ export class Home extends Component {
             <br></br>
             <br></br>
                 {this.props.user.username !== "" && <h2><FaUser></FaUser>{this.props.user.username}</h2>}
-
+                <br></br>
+                {this.getSugestedLink()}
             </div>
+
         );
     }
 }

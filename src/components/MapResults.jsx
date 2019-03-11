@@ -4,9 +4,11 @@ import MapLegend from './MapLegend';
 import ColorMixerUtil from './utils/ColorMixerUtil';
 import './styles/map.css';
 import 'leaflet/dist/leaflet.css';
+import './styles/elections_results.css';
+
 import PreferencesLegendDisplay from "./PreferencesLegendDisplay";
 
-class CusecMap extends Component {
+class MapResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -107,26 +109,12 @@ class CusecMap extends Component {
     }
 
     getExtremeValues = () => {
-        let party;
-        let max = 1;
-        let min = 0;
+        const propertyDisplayed = this.props.propertyDisplayed;
+        let max = this.props.intervalsValuesObject[propertyDisplayed].max || 1;
+        let min = this.props.intervalsValuesObject[propertyDisplayed].min || 0;
         let unit = "";
-        if (Object.keys(this.props.intervalsValuesObject).indexOf(this.props.propertyDisplayed)>-1){
-            party = this.props.propertyDisplayed;
-        } else{
-            party = this.props.propertyDisplayed.replace("%", "");
-        }
-        if (this.props.intervalsValuesObject && this.props.intervalsValuesObject[party]) {
-            if (this.props.propertyDisplayed.indexOf("%") > -1 && this.props.intervalsValuesObject[party].maxPercent) {
-                max = this.props.intervalsValuesObject[party].maxPercent;
-                min = this.props.intervalsValuesObject[party].minPercent;
-                unit = "%"
-            } else if (this.props.intervalsValuesObject[party].max) {
-                max = this.props.intervalsValuesObject[party].max;
-                min = this.props.intervalsValuesObject[party].min;
-            }
-        }
-        return {party, min ,max, unit};
+
+        return {propertyDisplayed, min, max, unit};
     }
 
     obtainLegened = (extremeValues) => {
@@ -149,4 +137,4 @@ class CusecMap extends Component {
         return outputStr;
     }
 }
-export default CusecMap;
+export default MapResults;

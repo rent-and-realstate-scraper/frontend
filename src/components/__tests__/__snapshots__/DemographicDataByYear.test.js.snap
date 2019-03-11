@@ -95,7 +95,7 @@ ShallowWrapper {
           />
           <br />
           <div>
-            <CusecMap
+            <MapResults
               centerMap={true}
               colorMax="rgb(0, 153, 0)"
               colorMin="rgb(254, 251, 233)"
@@ -231,7 +231,7 @@ ShallowWrapper {
             />,
             <br />,
             <div>
-              <CusecMap
+              <MapResults
                 centerMap={true}
                 colorMax="rgb(0, 153, 0)"
                 colorMin="rgb(254, 251, 233)"
@@ -429,7 +429,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <CusecMap
+              "children": <MapResults
                 centerMap={true}
                 colorMax="rgb(0, 153, 0)"
                 colorMin="rgb(254, 251, 233)"
@@ -526,7 +526,7 @@ ShallowWrapper {
             />
             <br />
             <div>
-              <CusecMap
+              <MapResults
                 centerMap={true}
                 colorMax="rgb(0, 153, 0)"
                 colorMin="rgb(254, 251, 233)"
@@ -662,7 +662,7 @@ ShallowWrapper {
               />,
               <br />,
               <div>
-                <CusecMap
+                <MapResults
                   centerMap={true}
                   colorMax="rgb(0, 153, 0)"
                   colorMin="rgb(254, 251, 233)"
@@ -860,7 +860,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <CusecMap
+                "children": <MapResults
                   centerMap={true}
                   colorMax="rgb(0, 153, 0)"
                   colorMin="rgb(254, 251, 233)"

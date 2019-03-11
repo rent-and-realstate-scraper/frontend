@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import "../setupTests"
 import {DemographicData} from '../DemographicData';
-import CusecMap from "../CusecMap";
+import MapResults from "../MapResults";
 import waitUntil from 'async-wait-until';
 
 
@@ -15,10 +15,10 @@ const selectedStyleOption = "%_edad_de_25_a_49";
 describe('Cusec map', () => {
     it('renders calculates parameters necesary to render map and renders map correctly', async (done) => {
         const wrapper = shallow(
-            <CusecMap intervalsValuesObject={intervalsValuesObject}
-                      geoJson={geoJson}
-                      colorMax={colorMax} colorMin={colorMin}
-                      propertyDisplayed={undefined}/>
+            <MapResults intervalsValuesObject={intervalsValuesObject}
+                        geoJson={geoJson}
+                        colorMax={colorMax} colorMin={colorMin}
+                        propertyDisplayed={undefined}/>
         );
         wrapper.setProps({propertyDisplayed:selectedStyleOption});
 
