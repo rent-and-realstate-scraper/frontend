@@ -87,12 +87,14 @@ class ScrapingSummaries extends Component {
         const city = event.target.value;
         this.setState({ selectedCity: city });
         await this.setResultsAndGeoJson(city);
+        await this.setStyleOptions();
 
     }
 
     changeOption = async (event) => {
         const option = event.target.value;
         this.setState({ selectedStyleOption: option });
+
     }
 
 
