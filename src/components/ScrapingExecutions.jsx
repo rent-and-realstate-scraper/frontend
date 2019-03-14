@@ -12,7 +12,7 @@ class ScrapingExecutions extends Component {
         this.state = {
             limit: 100,
             skip: 0,
-            order: -1,
+            order: "desc",
             maxDateDiff: 1000 * 60 * 20,
             retrievedExec: [],
             statusExec: {},
