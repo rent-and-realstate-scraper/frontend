@@ -106,7 +106,7 @@ class ScrapingExecutions extends Component {
                 <tbody>
                     {this.state.retrievedExec.map((execution, index) =>
                         <tr key={index}>
-                            <th scope="row"> <Link onClick={this.selectScrapingId} to={'/scraping_summaries_ol/' + execution.scraping_id} name={index} className="cell-hover">{execution.scraping_id}</Link></th>
+                            <th scope="row"> <Link onClick={this.selectScrapingId} to={'/scraping_summaries/' + execution.scraping_id} name={index} className="cell-hover">{execution.scraping_id}</Link></th>
                             <td className="big-cell">{execution.date_scraped}</td>
                             <td>{execution.last_piece}</td>
                             <td>{execution.app_id}</td>
