@@ -5,6 +5,7 @@ import Login from './auth/Login';
 import Create from './auth/Register';
 import ScrapingExecutions from "./ScrapingExecutions";
 import ScrapingSummaries from "./ScrapingSummaries";
+import ScrapingSummariesOL from "./ScrapingSummariesOL";
 class Roots extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,7 @@ class Roots extends Component {
                 <Route path="/register" component={Create} />
                 <Route path="/scraping_executions" component={ScrapingExecutions} />
                 <Route path="/scraping_summaries/:scraping_id" component={ScrapingSummaries} />
+                <Route path="/scraping_summaries_ol/:scraping_id" component={ScrapingSummariesOL} />
                 <Route exact path="/" component={Home} />
                 <Route path="/home" component={Home} />
             </div>);
