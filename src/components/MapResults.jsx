@@ -113,7 +113,6 @@ class MapResults extends Component {
         let max = this.props.intervalsValuesObject[propertyDisplayed].max || 1;
         let min = this.props.intervalsValuesObject[propertyDisplayed].min || 0;
         let unit = "";
-
         return {propertyDisplayed, min, max, unit};
     }
 

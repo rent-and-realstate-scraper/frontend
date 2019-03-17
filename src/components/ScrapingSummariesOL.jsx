@@ -41,6 +41,7 @@ class ScrapingSummariesOL extends Component {
     }
 
     setResultsAndGeoJson = async (city) => {
+        this.setState({geoJson:undefined, intervalsValuesObject:undefined})
         const data = await getScrapingResults(city, this.state.scraping_id);
         const geoJson = data.geojson;
         const intervalsValuesObject = data.intervals;
@@ -97,7 +98,8 @@ class ScrapingSummariesOL extends Component {
             if(this.state.intervalsValuesObject && this.state.geoJson && this.state.selectedStyleOption) {
                 const propertyDisplayed = this.state.selectedStyleOption;
                 const map =
-                    <MapResultsOpenlayers propertyDisplayed={propertyDisplayed}
+                    <MapResultsOpenlayers intervalsValuesObject={this.state.intervalsValuesObject.options}
+                                          propertyDisplayed={propertyDisplayed}
                                           geojson={this.state.geoJson}
 
                     />;
