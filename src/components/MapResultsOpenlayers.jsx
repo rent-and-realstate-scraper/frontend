@@ -12,12 +12,25 @@ import VectorSource from 'ol/source/Vector';
 export class MapResultsOpenlayers extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {crs:"EPSG:900913"}
     };
 
     getLayers = () => {
+        const geojson = this.props.geojson;
+        console.log(geojson);
+        const crsStr = this.state.crs;
+        geojson.crs = {
+            'type': 'name',
+                'properties': {
+                'name': crsStr
+            }
+        };
+
         const vectorSource = new VectorSource({
-            features: (new GeoJSON()).readFeatures(this.props.geojson)
+            renderMode: 'image',
+            format: new GeoJSON(),
+            projection: crsStr,
+            features: (new GeoJSON()).readFeatures(geojson)
         });
 
         const vectorLayer = new VectorLayer({
@@ -33,21 +46,15 @@ export class MapResultsOpenlayers extends Component {
 
 
         let map = new Map({
-            controls: new defaults({
-                attributionOptions: {
-                    collapsible: false
-                }
-            }).extend([
-                new ScaleLine()
-            ]),
             target: 'basemap',
             layers: [
-                tileLayer,
-                vectorLayer
+                vectorLayer,
+                tileLayer
             ],
             view: new View({
-                center: fromLonLat([40, -3]),
-                zoom: 10
+                projection: crsStr,
+                center: fromLonLat([-3, 40]),
+                zoom: 8
             })
         })
 
