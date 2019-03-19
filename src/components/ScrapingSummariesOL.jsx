@@ -17,6 +17,9 @@ class ScrapingSummariesOL extends Component {
             selectedCity: "",
             styleOptions: [],
             selectedStyleOption: "",
+            colorMax: "rgb(0, 153, 0)",
+            colorMin: "rgb(254, 251, 233)",
+            opacity:0.7,
             scrapedCities: null,
             retrievedExec: null,
             propertyDisplayed:undefined,
@@ -99,7 +102,9 @@ class ScrapingSummariesOL extends Component {
                 const propertyDisplayed = this.state.selectedStyleOption;
                 const map =
                     <MapResultsOpenlayers intervalsValuesObject={this.state.intervalsValuesObject.options}
+                                          colorMax={this.state.colorMax} colorMin={this.state.colorMin}
                                           propertyDisplayed={propertyDisplayed}
+                                          opacity={this.state.opacity}
                                           geojson={this.state.geoJson}
 
                     />;

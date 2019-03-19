@@ -7,18 +7,35 @@ import GeoJSON from 'ol/format/GeoJSON.js';
 import Circle from 'ol/geom/Circle.js';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
 import {OSM, Vector as VectorSource} from 'ol/source.js';
-import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style.js';
+import {Circle as CircleStyle, Fill, Stroke,  Style} from 'ol/style.js';
 import {fromLonLat} from "ol/proj";
+import ColorMixerUtil from "./utils/ColorMixerUtil";
+import {get} from 'lodash';
 
 
 export class MapResultsOpenlayers extends Component {
     constructor(props) {
         super(props);
-        this.state = {loading:true}
+        this.state = {loading:true,
+            colorMax: props.colorMax,
+            colorMin: props.colorMin,
+            opacity: props.opacity || 0.9}
+        this.colorMixer = new ColorMixerUtil();
     };
 
+    componentDidMount() {
+        this.getLayers();
+    }
+
+
+    componentDidUpdate(prevProps, nextProps){
+        if(prevProps.propertyDisplayed != this.props.propertyDisplayed || prevProps.colorMax != this.props.colorMax){
+            this.getLayers();
+        }
+    }
+
     getLayers = () => {
-        this.setState({loading:true});
+        this.setState({loading:true, map: undefined});
         this.setExtremeValues();
         const projection = "EPSG:3857";
         const geojson = this.props.geojson;
@@ -33,17 +50,38 @@ export class MapResultsOpenlayers extends Component {
             featureProjection: 'EPSG:3857',
             dataProjection: 'EPSG:4326'
         });
-        var vectorSource = new VectorSource({
-            projection: projection, //HERE IS THE DATA SOURCE PROJECTION
+        const vectorSource = new VectorSource({
+            projection: projection,
             features: features
         });
+        this.setExtremeValues();
 
+        const styleFunction = (feature) => {
+            console.log(this.props.propertyDisplayed);
+            if(feature){
+                const factor = (feature.get(this.props.propertyDisplayed) - this.state.extremeValues.min) / this.state.extremeValues.max;
+                const fillOpacity = this.state.opacity;
+                const fillColor = this.colorMixer.colorMixer(this.state.colorMax, this.state.colorMin, factor);
+                const styleCache = new Style({
+                    fill: new Fill({
+                        color: fillColor
+                    }),
+                    opacity:fillOpacity
+                });
+
+                // at this point, the style for the current level is in the cache
+                // so return it (as an array!)
+                return [styleCache];
+            }
+        }
         //vectorSource.addFeature(new Feature(new Circle([5e6, 7e6], 1e6)));
 
-        var vectorLayer = new VectorLayer({
-            source: vectorSource});
+        const vectorLayer = new VectorLayer({
+            source: vectorSource,
+            style: styleFunction
+        });
 
-        var map = new Map({
+        const map = new Map({
             layers: [
                 new TileLayer({
                     source: new OSM()
@@ -57,7 +95,9 @@ export class MapResultsOpenlayers extends Component {
                 zoom: 8
             })
         });
+        map.render();
         this.setState({loading:false});
+        this.setState({map});
     }
 
     setExtremeValues = () => {
@@ -67,9 +107,6 @@ export class MapResultsOpenlayers extends Component {
         let unit = "";
         const extremeValues = {propertyDisplayed, min, max, unit};
         this.setState({extremeValues});
-    }
-    componentDidMount() {
-        this.getLayers();
     }
 
     render() {
