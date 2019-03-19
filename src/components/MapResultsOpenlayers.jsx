@@ -27,15 +27,7 @@ export class MapResultsOpenlayers extends Component {
         this.getLayers();
     }
 
-
-    componentDidUpdate(prevProps, nextProps){
-        if(prevProps.propertyDisplayed != this.props.propertyDisplayed || prevProps.colorMax != this.props.colorMax){
-            this.getLayers();
-        }
-    }
-
     getLayers = () => {
-        this.setState({loading:true, map: undefined});
         this.setExtremeValues();
         const projection = "EPSG:3857";
         const geojson = this.props.geojson;
@@ -95,8 +87,10 @@ export class MapResultsOpenlayers extends Component {
                 zoom: 8
             })
         });
-        map.render();
-        this.setState({loading:false});
+        if (this.state.map){
+            this.setState({loading:false});
+
+        }
         this.setState({map});
     }
 

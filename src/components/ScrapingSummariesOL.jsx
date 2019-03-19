@@ -91,6 +91,7 @@ class ScrapingSummariesOL extends Component {
     }
 
     changeOption = async (event) => {
+        this.setState({ selectedStyleOption: undefined });
         const option = event.target.value;
         this.setState({ selectedStyleOption: option });
 
@@ -109,6 +110,8 @@ class ScrapingSummariesOL extends Component {
 
                     />;
                 return map;
+            } else {
+                return (<span>loading</span>)
             }
         }
 
