@@ -11,6 +11,8 @@ import {Circle as CircleStyle, Fill, Stroke,  Style} from 'ol/style.js';
 import {fromLonLat} from "ol/proj";
 import ColorMixerUtil from "./utils/ColorMixerUtil";
 import {get} from 'lodash';
+import MapLegend from "./MapLegend";
+import PreferencesLegendDisplay from "./PreferencesLegendDisplay";
 
 
 export class MapResultsOpenlayers extends Component {
@@ -23,12 +25,15 @@ export class MapResultsOpenlayers extends Component {
         this.colorMixer = new ColorMixerUtil();
     };
 
-    componentDidMount() {
-        this.getLayers();
+    setStateAsync = updater => new Promise(resolve => this.setState(updater, resolve))
+
+    async componentDidMount() {
+        await this.getLayers();
+        await this.obtainLegened();
     }
 
-    getLayers = () => {
-        this.setExtremeValues();
+    getLayers = async () => {
+        await this.setExtremeValues();
         const projection = "EPSG:3857";
         const geojson = this.props.geojson;
 
@@ -46,10 +51,8 @@ export class MapResultsOpenlayers extends Component {
             projection: projection,
             features: features
         });
-        this.setExtremeValues();
 
         const styleFunction = (feature) => {
-            console.log(this.props.propertyDisplayed);
             if(feature){
                 const factor = (feature.get(this.props.propertyDisplayed) - this.state.extremeValues.min) / this.state.extremeValues.max;
                 const fillOpacity = this.state.opacity;
@@ -61,18 +64,15 @@ export class MapResultsOpenlayers extends Component {
                     opacity:fillOpacity
                 });
 
-                // at this point, the style for the current level is in the cache
-                // so return it (as an array!)
                 return [styleCache];
             }
         }
-        //vectorSource.addFeature(new Feature(new Circle([5e6, 7e6], 1e6)));
 
         const vectorLayer = new VectorLayer({
             source: vectorSource,
             style: styleFunction
         });
-
+        const position = this.getPosition();
         const map = new Map({
             layers: [
                 new TileLayer({
@@ -80,32 +80,68 @@ export class MapResultsOpenlayers extends Component {
                 }),
                 vectorLayer
             ],
-            target: 'map',
+            target: 'mapOL',
             view: new View({
                 projection: projection,
-                center: fromLonLat([-3, 40]),
-                zoom: 8
+                center: fromLonLat(position, projection),
+                zoom: 12
             })
         });
-        if (this.state.map){
-            this.setState({loading:false});
-
-        }
-        this.setState({map});
+        this.setState({loading:false});
     }
 
-    setExtremeValues = () => {
+    setExtremeValues = async () => {
         const propertyDisplayed = this.props.propertyDisplayed;
         let max = this.props.intervalsValuesObject[propertyDisplayed].max || 1;
         let min = this.props.intervalsValuesObject[propertyDisplayed].min || 0;
         let unit = "";
         const extremeValues = {propertyDisplayed, min, max, unit};
-        this.setState({extremeValues});
+        await this.setStateAsync({extremeValues});
+    }
+
+
+    obtainLegened = async () => {
+        if( this.state.extremeValues){
+            const legend = <MapLegend maxValue={this.state.extremeValues.max} minValue={this.state.extremeValues.min} colorMax={this.props.colorMax}
+                               colorMin={this.props.colorMin} unit={this.state.extremeValues.unit} label={this.props.propertyDisplayed}></MapLegend>;
+            await this.setStateAsync({legend});
+        }
+    }
+
+    getPosition = () => {
+        let position;
+        const mapDataPresent = (this.props.geojson && this.props.geojson.features && this.props.geojson.features[0]);
+        if ( mapDataPresent && this.props.geojson.features[0].geometry.coordinates[0][0][0][0]) {
+            position = [this.props.geojson.features[0].geometry.coordinates[0][0][0][0], this.props.geojson.features[0].geometry.coordinates[0][0][0][1]];
+        } else if (mapDataPresent && this.props.geojson.features[0].geometry.coordinates[0][0][0]) {
+            position = [this.props.geojson.features[0].geometry.coordinates[0][0][0], this.props.geojson.features[0].geometry.coordinates[0][0][1]]
+        } else {
+            position = [-3, 40];
+        }
+        return position;
+
     }
 
     render() {
         return (
-            <div id="map" className='basemap'></div>
+            <div>
+                <div className="container-map">
+                    <div className="row legend">
+                        <div className="col-sm-4"> {this.state.legend}</div>
+                        {this.state.extremeValues &&
+                        <div className="col-sm-4 edit-min-max"><PreferencesLegendDisplay
+                            geoJson={this.props.geojson}
+                            propertyDisplayed={this.props.propertyDisplayed}
+                            limits={{min: this.state.extremeValues.min, max: this.state.extremeValues.max}}
+                            changeLimits={this.updateLimitsFromSlider}/>
+                        </div>
+                        }
+                    </div>
+                    <div className="">
+                        <div id="mapOL" className='map-box'></div>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

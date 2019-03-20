@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getScrapedCities, getScrapingResults } from './services/summariesService';
-
+import {get} from 'lodash';
 import { connect } from 'react-redux';
 import { updateExecutionId, getExecutionId } from '../redux/actions';
 import 'leaflet/dist/leaflet.css';
@@ -91,9 +91,10 @@ class ScrapingSummariesOL extends Component {
     }
 
     changeOption = async (event) => {
-        this.setState({ selectedStyleOption: undefined });
-        const option = event.target.value;
-        this.setState({ selectedStyleOption: option });
+        const option = get(event,'target.value');
+        this.setState({ selectedStyleOption: undefined }, () =>{
+            this.setState({ selectedStyleOption: option });
+        });
 
     }
 
