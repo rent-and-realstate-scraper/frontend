@@ -21,25 +21,24 @@ class ScrapingExecutions extends Component {
     }
 
     async componentDidMount() {
-        const self = this;
+        await this.refeshTables();
         this.setState({
-            timer: setInterval(async () => {
-                getExecutions(self.state.limit, self.state.skip, self.state.order).then((data) => {
-                    const retrievedExec = data;
-                    this.setState({ retrievedExec });
-                });
+            timer: setInterval(async () => {await this.refeshTables()}, 5000)})
 
-                getScrapingRemainingAllDevices().then((data) => {
-                    const statusExec = data;
-                    this.setState({ statusExec });
-                });
+    }
+    refeshTables = async () => {
+            getExecutions(this.state.limit, this.state.skip, this.state.order).then((data) => {
+                const retrievedExec = data;
+                this.setState({ retrievedExec });
+            });
 
+            getScrapingRemainingAllDevices().then((data) => {
+                const statusExec = data;
+                this.setState({ statusExec });
+            });
 
-                //this.onUpdateExecutionId(retrievedExec[0]);
-                console.log(self.state);
-            }, 1000)
-        })
-
+            //this.onUpdateExecutionId(retrievedExec[0]);
+            console.log(this.state);
     }
 
     render() {
@@ -106,7 +105,7 @@ class ScrapingExecutions extends Component {
                 <tbody>
                     {this.state.retrievedExec.map((execution, index) =>
                         <tr key={index}>
-                            <th scope="row"> <Link onClick={this.selectScrapingId} to={'/scraping_summaries/' + execution.scraping_id} name={index} className="cell-hover">{execution.scraping_id}</Link></th>
+                            <th scope="row"> <Link onClick={this.selectScrapingId} to={'/scraping_summaries_ol/' + execution.scraping_id} name={index} className="cell-hover">{execution.scraping_id}</Link></th>
                             <td className="big-cell">{execution.date_scraped}</td>
                             <td>{execution.last_piece}</td>
                             <td>{execution.app_id}</td>

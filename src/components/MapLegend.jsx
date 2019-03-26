@@ -58,7 +58,6 @@ class MapLegend extends Component {
       
     updateWindowDimensions = () => {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
-        console.log(this.state.width)
     }
 }
 

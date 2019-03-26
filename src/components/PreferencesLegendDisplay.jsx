@@ -24,11 +24,11 @@ class PreferencesLegendDisplay extends Component {
 
     }
     componentDidUpdate(prevProps, nextProps){
-        if (prevProps.limits != this.props.limits){
+        if (prevProps.limits !== this.props.limits){
             const histData = Object.values(this.histogramUtil.getIntervalData(this.props.geoJson,this.props.propertyDisplayed));
             this.setState({data:histData, limitsSlider:this.props.limits});
         }
-        if (prevProps.propertyDisplayed != this.props.propertyDisplayed){
+        if (prevProps.propertyDisplayed !== this.props.propertyDisplayed){
             this.setState({propertyDisplayed:this.props.propertyDisplayed, geoJson:this.props.geoJson});
         }
     }

@@ -1,27 +1,29 @@
 import React, {Component} from 'react'
 import 'ol/ol.css'
-import Feature from 'ol/Feature.js';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import GeoJSON from 'ol/format/GeoJSON.js';
-import Circle from 'ol/geom/Circle.js';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
 import {OSM, Vector as VectorSource} from 'ol/source.js';
 import {Circle as CircleStyle, Fill, Stroke,  Style} from 'ol/style.js';
 import {fromLonLat} from "ol/proj";
 import ColorMixerUtil from "./utils/ColorMixerUtil";
-import {get} from 'lodash';
+import {omit} from 'lodash';
 import MapLegend from "./MapLegend";
 import PreferencesLegendDisplay from "./PreferencesLegendDisplay";
+import Modal from "react-responsive-modal";
+import {Link} from "react-router-dom";
 
 
 export class MapResultsOpenlayers extends Component {
     constructor(props) {
         super(props);
         this.state = {loading:true,
+            projection: "EPSG:3857",
             colorMax: props.colorMax,
             colorMin: props.colorMin,
-            opacity: props.opacity || 0.9}
+            opacity: props.opacity || 0.9,
+            renderModal: false}
         this.colorMixer = new ColorMixerUtil();
     };
 
@@ -34,7 +36,7 @@ export class MapResultsOpenlayers extends Component {
 
     getLayers = async () => {
         await this.setExtremeValues();
-        const projection = "EPSG:3857";
+        const projection = this.state.projection;
         const geojson = this.props.geojson;
 
         geojson.crs = {
@@ -44,7 +46,7 @@ export class MapResultsOpenlayers extends Component {
             }
         };
         const features = (new GeoJSON()).readFeatures(geojson, {
-            featureProjection: 'EPSG:3857',
+            featureProjection: projection,
             dataProjection: 'EPSG:4326'
         });
         const vectorSource = new VectorSource({
@@ -59,7 +61,12 @@ export class MapResultsOpenlayers extends Component {
                 const fillColor = this.colorMixer.colorMixer(this.state.colorMax, this.state.colorMin, factor);
                 const styleCache = new Style({
                     fill: new Fill({
-                        color: fillColor
+                        color: fillColor,
+                        opacity:fillOpacity
+                    }),
+                    stroke: new Stroke({
+                        color: 'green',
+                        width: 1
                     }),
                     opacity:fillOpacity
                 });
@@ -70,6 +77,7 @@ export class MapResultsOpenlayers extends Component {
 
         const vectorLayer = new VectorLayer({
             source: vectorSource,
+            opacity:this.state.opacity,
             style: styleFunction
         });
         const position = this.getPosition();
@@ -88,6 +96,8 @@ export class MapResultsOpenlayers extends Component {
             })
         });
         this.setState({loading:false});
+
+        this.addClickEvents(map);
     }
 
     setExtremeValues = async () => {
@@ -97,6 +107,17 @@ export class MapResultsOpenlayers extends Component {
         let unit = "";
         const extremeValues = {propertyDisplayed, min, max, unit};
         await this.setStateAsync({extremeValues});
+    }
+
+    addClickEvents = (map)=>{
+        map.on('click', (evt) => {
+            const feature = map.forEachFeatureAtPixel(evt.pixel,
+                function (feature, layer) {
+                    return feature;
+                });
+            const data = omit(feature.values_, ['geometry']);
+            this.setState({selectedFeatureData:data, renderModal:true});
+        });
     }
 
 
@@ -125,6 +146,7 @@ export class MapResultsOpenlayers extends Component {
     render() {
         return (
             <div>
+                {this.getModal()}
                 <div className="container-map">
                     <div className="row legend">
                         <div className="col-sm-4"> {this.state.legend}</div>
@@ -144,4 +166,40 @@ export class MapResultsOpenlayers extends Component {
             </div>
         )
     }
+
+    getModal() {
+        if (this.state.selectedFeatureData){
+            const dataKeys = Object.keys(this.state.selectedFeatureData);
+            return (
+                <Modal open={this.state.renderModal} onClose={this.onCloseModal} center>
+                    <h4>Datos</h4>
+                    <div className="table-responsive table-big">
+                        <table className="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">parametro</th>
+                                <th scope="col">valor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {dataKeys.map((key, index) =>
+                                <tr key={index}>
+                                    <td>{key}:</td>
+                                    <td>{this.state.selectedFeatureData[key]}</td>
+                                </tr>
+                            )}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </Modal>
+            );
+        }
+
+    }
+
+    onCloseModal = () => {
+        this.setState({renderModal: false});
+    };
+
 }

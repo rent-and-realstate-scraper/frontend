@@ -31,7 +31,6 @@ class PreferencesMapMenu extends Component {
     }
     handleChangeComplete = (color) => {
         this.setState({ colorMax: this.colorMixer.covertFromColorPickerOutput(color.rgb) });
-        console.log(color.rgb);
         this.props.updateColor(this.state.colorMax);
       };
     render() {
