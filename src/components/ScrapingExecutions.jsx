@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { updateExecutionId, getExecutionId } from '../redux/actions';
 import { Link } from "react-router-dom";
 import {FaCog} from "react-icons/fa/index";
-
+import LoadingDots  from './LoadingDots'
 class ScrapingExecutions extends Component {
     constructor(props) {
         super(props);
@@ -16,42 +16,46 @@ class ScrapingExecutions extends Component {
             maxDateDiff: 1000 * 60 * 20,
             retrievedExec: [],
             statusExec: {},
+            loading:true,
             timer: null
         }
     }
 
+    setStateAsync = updater => new Promise(resolve => this.setState(updater, resolve))
+
     async componentDidMount() {
+        await this.setStateAsync({loading:true});
         await this.refeshTables();
+        await this.setStateAsync({loading:false});
+
         this.setState({
             timer: setInterval(async () => {await this.refeshTables()}, 5000)})
 
     }
     refeshTables = async () => {
-            getExecutions(this.state.limit, this.state.skip, this.state.order).then((data) => {
-                const retrievedExec = data;
-                this.setState({ retrievedExec });
-            });
+            const retrievedExec = await getExecutions(this.state.limit, this.state.skip, this.state.order)
+            await this.setStateAsync({ retrievedExec });
 
-            getScrapingRemainingAllDevices().then((data) => {
-                const statusExec = data;
-                this.setState({ statusExec });
-            });
-
-            //this.onUpdateExecutionId(retrievedExec[0]);
-            console.log(this.state);
+            const statusExec = await getScrapingRemainingAllDevices();
+            await this.setStateAsync({ statusExec });
     }
 
     render() {
         return (<div>
             <br />
-            <h2>Scraping executions</h2>
+            <h2>Scraping list executions</h2>
             <br />
             <br />
-            {this.progressTable()}
-            <br />
-            <br />
-            <br />
-            {this.executionTable()}
+            {this.state.loading && <div className="loading">Loading scraper list <LoadingDots/></div>}
+            {!this.state.loading &&
+                <div>
+                    {this.progressTable()}
+                    <br />
+                    <br />
+                    <br />
+                    {this.executionTable()}
+                </div>
+            }
         </div>);
     }
 

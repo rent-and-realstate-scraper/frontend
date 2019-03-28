@@ -150,14 +150,6 @@ export class MapResultsOpenlayers extends Component {
                 <div className="container-map">
                     <div className="row legend">
                         <div className="col-sm-4"> {this.state.legend}</div>
-                        {this.state.extremeValues &&
-                        <div className="col-sm-4 edit-min-max"><PreferencesLegendDisplay
-                            geoJson={this.props.geojson}
-                            propertyDisplayed={this.props.propertyDisplayed}
-                            limits={{min: this.state.extremeValues.min, max: this.state.extremeValues.max}}
-                            changeLimits={this.updateLimitsFromSlider}/>
-                        </div>
-                        }
                     </div>
                     <div className="">
                         <div id="mapOL" className='map-box'></div>
