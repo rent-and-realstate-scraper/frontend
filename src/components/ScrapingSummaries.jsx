@@ -6,6 +6,7 @@ import { updateExecutionId, getExecutionId } from '../redux/actions';
 import { GeoJSON, Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import MapResults from "./MapResults";
+import LoadingDots  from './LoadingDots'
 
 class ScrapingSummaries extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ class ScrapingSummaries extends Component {
             opacity:0.7,
             retrievedExec: null,
             propertyDisplayed:undefined,
-            map:undefined
+            map:undefined,
+            loading:false
         }
         this.changeCity = this.changeCity.bind(this);
     }
@@ -37,7 +39,9 @@ class ScrapingSummaries extends Component {
             citiesObj.map((city) => { cities.push(city.city_name) });
             this.setState({ scrapedCities: cities });
             if (cities[0]) {
+                this.setState({loading: true});
                 await this.setResultsAndGeoJson(cities[0]);
+                this.setState({loading: false});
             }
             if (this.state.geoJson) {
                 this.setStyleOptions();
@@ -69,7 +73,10 @@ class ScrapingSummaries extends Component {
                 </select>
             </div>}
             <br></br>
-            {this.state.styleOptions && <div className="form-inline col-sm-6 col-lg-3">
+             <div>
+                 {this.state.loading && <div className="loading">Loading map data <LoadingDots/></div>}
+             </div>
+            {!this.state.loading && this.state.styleOptions && <div className="form-inline col-sm-6 col-lg-3">
                 <label htmlFor="sel1">option:</label>
                 <select className="form-control" id="sel1" onChange={this.changeOption} value={this.state.selectedStyleOption}>
                     {this.state.styleOptions.map((option, index) => <option key={index} value={option}>{option}</option>)}

@@ -4,8 +4,8 @@ import {get} from 'lodash';
 import { connect } from 'react-redux';
 import { updateExecutionId, getExecutionId } from '../redux/actions';
 import 'leaflet/dist/leaflet.css';
-import MapResults from "./MapResults";
 import {MapResultsOpenlayers} from "./MapResultsOpenlayers";
+import LoadingDots  from './LoadingDots'
 
 class ScrapingSummariesOL extends Component {
     constructor(props) {
@@ -23,7 +23,8 @@ class ScrapingSummariesOL extends Component {
             scrapedCities: null,
             retrievedExec: null,
             propertyDisplayed:undefined,
-            map:undefined
+            map:undefined,
+            loading:false
         }
         this.changeCity = this.changeCity.bind(this);
     }
@@ -35,9 +36,11 @@ class ScrapingSummariesOL extends Component {
             citiesObj.map((city) => { cities.push(city.city_name) });
             this.setState({ scrapedCities: cities });
             if (cities[0]) {
+                this.setState({loading: true});
                 await this.setResultsAndGeoJson(cities[0]);
+                this.setState({loading: false});
             }
-            if (this.state.geoJson) {
+                if (this.state.geoJson) {
                 this.setStyleOptions();
             }
         }
@@ -67,8 +70,11 @@ class ScrapingSummariesOL extends Component {
                     {this.state.scrapedCities.map((city, index) => <option key={index} value={city}>{city}</option>)}
                 </select>
             </div>}
+            <div>
+                {this.state.loading && <div className="loading">Loading map data <LoadingDots/></div>}
+            </div>
             <br></br>
-            {this.state.styleOptions && <div className="form-inline col-sm-6 col-lg-3">
+            {!this.state.loading && this.state.styleOptions && <div className="form-inline col-sm-6 col-lg-3">
                 <label htmlFor="sel1">option:</label>
                 <select className="form-control" id="sel1" onChange={this.changeOption} value={this.state.selectedStyleOption}>
                     {this.state.styleOptions.map((option, index) => <option key={index} value={option}>{option}</option>)}
@@ -112,7 +118,7 @@ class ScrapingSummariesOL extends Component {
                     />;
                 return map;
             } else {
-                return (<span>loading</span>)
+                return (<span></span>)
             }
         }
 
