@@ -1,6 +1,6 @@
 
 const config = {
-    backendUrl: process.env["BACKEND_URL"] || 'https://hbello.info',
+    backendUrl: process.env["BACKEND_URL"] || 'https://hbello.info/scraping',
 };
 /*
 const config = {
